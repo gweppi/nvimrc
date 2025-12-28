@@ -1,0 +1,5 @@
+require('gwep.set')
+require('gwep.remap')
+require('gwep.autocmd')
+require('gwep.lazy')
+require('gwep.terminal')
