@@ -6,6 +6,7 @@ vim.g.maplocalleader = ' '
 -- Set (relative) line numbers
 vim.o.number = true
 vim.o.relativenumber = true
+vim.o.statuscolumn = "%s %l %r"
 
 -- Hide current mode, as it will be shown in custom status bar
 vim.o.showmode = false
@@ -41,7 +42,7 @@ vim.o.signcolumn = 'yes'
 vim.o.updatetime = 250
 
 -- set timeout length for mappings
-vim.o.timeoutlen = 500
+vim.o.timeoutlen = 1000
 
 -- set how windows split
 vim.o.splitright = true

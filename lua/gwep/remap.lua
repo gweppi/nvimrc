@@ -10,3 +10,10 @@ vim.keymap.set('n', '<C-l>', '<C-w>l', { desc = 'Move focus to window on the rig
 
 -- open explorer for directory of current file
 vim.keymap.set('n', '<leader>e', vim.cmd.Ex, { desc = 'Open explorer for directory of current file' })
+
+vim.keymap.set('t',  '<Esc>', '<C-\\><C-N>', { desc = "Exit terminal mode" })
+
+vim.keymap.set('n', '<leader>w', vim.cmd.tabnew, { desc = 'Open new tab' })
+vim.keymap.set('n', '<leader>W', vim.cmd.tabclose, { desc = 'Close current tab' })
+
+vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, { desc = 'Open diagnostic float' })

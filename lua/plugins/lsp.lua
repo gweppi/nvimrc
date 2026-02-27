@@ -107,35 +107,53 @@ return {
                     }
                 },
                 signs = true,
-
             })
 
             -- extend neovim capabilities
             local capabilities = require('blink.cmp').get_lsp_capabilities()
+            --enable (broadcasting) snippet capability for completion
+            capabilities.textDocument.completion.completionItem.snippetSupport = true
+            -- add config to all lsps
+            vim.lsp.config('*', {
+                capabilities = capabilities
+            })
 
             -- the language servers that should be / are installed
             -- see :help lspconfig-all for all options
-            local servers = {
-                lua_ls = {
+            -- each table contains the config for that specific lsp
+            -- see :help vim.lsp.Config for that
 
-                },
+            ---@type table<string, vim.lsp.Config>
+            local servers = {
+                lua_ls = {},
                 basedpyright = {},
+                gradle_ls = {},
+                jsonls = {},
+                jdtls = {
+                    cmd = {
+                        'jdtls',
+                        '-data',
+                        vim.fn.expand('~/.cache/nvim/jdtls/workspace/project'),
+                        '-classpath',
+                        vim.fn.getcwd(),
+                    },
+                },
+                ts_ls = {},
+                html = {},
+                yamlls = {},
+                cssls = {},
+                clangd = {},
+                gopls = {},
             }
+
+            for lsp, config in pairs(servers) do
+                vim.lsp.config(lsp, config)
+            end
 
             require('mason-lspconfig').setup({
                 ensure_installed = vim.tbl_keys(servers),
                 automatic_enable = true,
-                handlers = {
-                    function(server_name)
-                        local server = servers[server_name] or {}
-                        -- This handles overriding only values explicitly passed
-                        -- by the server configuration above. Useful when disabling
-                        -- certain features of an LSP (for example, turning off formatting for ts_ls)
-                        server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-                        require('lspconfig')[server_name].setup(server)
-                    end,
-                },
             })
         end,
-    }
+    },
 }

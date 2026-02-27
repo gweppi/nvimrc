@@ -4,9 +4,20 @@ return {
     lazy = false,
     build = ':TSUpdate',
     config = function()
+        -- all supported languages can be found on https://github.com/nvim-treesitter/nvim-treesitter/blob/main/SUPPORTED_LANGUAGES.md
         local intalled_parsers = {
             'lua',
             'python',
+            'markdown',
+            'markdown_inline',
+            'html',
+            'css',
+            'java',
+            'javadoc',
+            'json',
+            'typescript',
+            'javascript',
+            'go',
         }
         -- install treesitter parsers
             require('nvim-treesitter').install(intalled_parsers)

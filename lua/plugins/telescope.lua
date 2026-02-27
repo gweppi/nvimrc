@@ -15,6 +15,9 @@ return {
         vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Find available help tags' })
         -- list recently open files
         vim.keymap.set('n', '<leader>fr', builtin.oldfiles, { desc = 'Show recently open files' })
+
+        -- list diagnostics
+        vim.keymap.set('n', '<leader>fd', builtin.diagnostics, { desc = 'Show diagnostics' })
         -- search files in nvim config directory
         local function find_nvim_files()
             builtin.find_files({
